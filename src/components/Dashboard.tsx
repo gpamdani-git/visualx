@@ -437,18 +437,49 @@ export default function Dashboard() {
         {/* 3-COLUMN PROJECT GRID */}
         <div className="p-8 flex-1">
           {sortedProjects.length === 0 ? (
-            <div className="h-64 flex flex-col items-center justify-center border border-dashed border-zinc-300 dark:border-[#262630] rounded-xl text-center p-6">
-              <Layers className="w-10 h-10 text-zinc-400 dark:text-gray-600 mb-2" />
-              <p className="text-sm font-medium text-zinc-600 dark:text-gray-400">No projects found</p>
-              <p className="text-xs text-zinc-400 dark:text-gray-600 mt-1">
-                {searchQuery ? 'Try clearing your search query' : 'Create your first project to get started'}
-              </p>
-              <button
-                onClick={() => createProject('My First Canvas')}
-                className="mt-4 px-3.5 py-1.5 text-xs font-semibold text-white bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 rounded-md transition-colors"
-              >
-                + New Project
-              </button>
+            <div className="relative overflow-hidden min-h-[360px] flex flex-col items-center justify-center border border-zinc-200 dark:border-[#262630] bg-white dark:bg-[#141418] rounded-2xl text-center p-8 shadow-sm">
+              <div className="pointer-events-none absolute -right-16 -top-20 h-52 w-52 rounded-full bg-blue-500/10 blur-3xl" />
+              <div className="pointer-events-none absolute -bottom-24 -left-16 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl" />
+              {searchQuery ? (
+                <>
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-[#202026]">
+                    <Search className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
+                  </div>
+                  <h2 className="text-base font-semibold text-zinc-900 dark:text-white">No matching projects</h2>
+                  <p className="mt-1 max-w-xs text-xs leading-5 text-zinc-500 dark:text-zinc-400">Try a different search term or clear the search to see all projects.</p>
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="mt-5 rounded-lg border border-zinc-200 bg-white px-3.5 py-2 text-xs font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-[#1C1C22] dark:text-zinc-200 dark:hover:bg-[#25252E]"
+                  >
+                    Clear search
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-zinc-900 text-white shadow-lg shadow-zinc-900/15 dark:bg-white dark:text-zinc-900">
+                    <Sparkles className="h-6 w-6" />
+                  </div>
+                  <h2 className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-white">Start with a blank canvas</h2>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-zinc-500 dark:text-zinc-400">Create a polished site from scratch, then shape every section in the visual editor.</p>
+                  <div className="mt-6 flex flex-wrap justify-center gap-2">
+                    <button
+                      onClick={() => setNewProjectModalOpen(true)}
+                      className="inline-flex items-center gap-1.5 rounded-lg bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+                    >
+                      <Plus className="h-3.5 w-3.5" />
+                      Create new site
+                    </button>
+                    <button
+                      onClick={() => setViewMode('figma')}
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 bg-white px-4 py-2.5 text-xs font-semibold text-zinc-700 transition-colors hover:bg-zinc-50 dark:border-zinc-700 dark:bg-[#1C1C22] dark:text-zinc-200 dark:hover:bg-[#25252E]"
+                    >
+                      <Layers className="h-3.5 w-3.5" />
+                      Try Figma Engine
+                    </button>
+                  </div>
+                  <p className="mt-4 text-[11px] text-zinc-400 dark:text-zinc-500">You can import a project backup anytime.</p>
+                </>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
