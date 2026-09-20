@@ -294,7 +294,6 @@ export default function RightSidebar() {
 
   // Context-Aware: If no node is selected, render Page Settings
   if (!selectedNode) {
-    console.log('[RightSidebar] Returning PageSettingsSection because selectedNode is', selectedNode);
     return (
       <aside 
         id="framer-right-inspector" 
@@ -386,7 +385,9 @@ export default function RightSidebar() {
   const hasActiveContent = isTextElement || selectedNode.type === 'Video' || activeSections.includes('typography');
   const hasActiveAppearance = activeSections.includes('styles') || activeSections.includes('transforms');
 
-  console.log('[RightSidebar] Returning full inspector for node:', selectedNode.id, selectedNode.type);
+  const breakpointLabel = activeBreakpoint === 'lg' ? 'Desktop' : activeBreakpoint === 'md' ? 'Tablet' : 'Phone';
+  const hasBreakpointOverrides = Object.keys(currentBreakpointStyles).length > 0;
+
   return (
     <aside 
       id="framer-right-inspector" 
@@ -422,6 +423,10 @@ export default function RightSidebar() {
         </div>
 
         <div className="flex items-center gap-1">
+          <span className="hidden sm:inline-flex items-center gap-1 rounded-md border border-zinc-200 dark:border-zinc-700/70 bg-white/70 dark:bg-zinc-900/50 px-1.5 py-1 text-[10px] font-medium text-zinc-500 dark:text-zinc-400" title={`${breakpointLabel} breakpoint`}>
+            <span className={clsx("h-1.5 w-1.5 rounded-full", hasBreakpointOverrides ? "bg-blue-500" : "bg-zinc-300 dark:bg-zinc-600")} />
+            {breakpointLabel}
+          </span>
           {!isRoot && (
             <button
               onClick={() => {
@@ -505,11 +510,11 @@ export default function RightSidebar() {
           )}
 
           {/* Tabs UI */}
-          <div className="flex border-b border-zinc-200 dark:border-[#1E1E1E] bg-zinc-50 dark:bg-[#111]">
+          <div className="sticky top-0 z-10 flex border-b border-zinc-200 dark:border-[#1E1E1E] bg-zinc-50/95 dark:bg-[#111]/95 backdrop-blur">
             <button
               onClick={() => setActiveTab('design')}
               className={clsx(
-                "flex-1 py-2 text-[11px] font-semibold transition-colors border-b-2",
+                "flex-1 py-2.5 text-[11px] font-semibold transition-colors border-b-2",
                 activeTab === 'design' ? "border-[#0099FF] text-zinc-900 dark:text-white" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
               )}
             >
@@ -518,7 +523,7 @@ export default function RightSidebar() {
             <button
               onClick={() => setActiveTab('layout')}
               className={clsx(
-                "flex-1 py-2 text-[11px] font-semibold transition-colors border-b-2",
+                "flex-1 py-2.5 text-[11px] font-semibold transition-colors border-b-2",
                 activeTab === 'layout' ? "border-[#0099FF] text-zinc-900 dark:text-white" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
               )}
             >
@@ -527,7 +532,7 @@ export default function RightSidebar() {
             <button
               onClick={() => setActiveTab('style')}
               className={clsx(
-                "flex-1 py-2 text-[11px] font-semibold transition-colors border-b-2",
+                "flex-1 py-2.5 text-[11px] font-semibold transition-colors border-b-2",
                 activeTab === 'style' ? "border-[#0099FF] text-zinc-900 dark:text-white" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
               )}
             >
@@ -536,7 +541,7 @@ export default function RightSidebar() {
             <button
               onClick={() => setActiveTab('code')}
               className={clsx(
-                "flex-1 py-2 text-[11px] font-semibold transition-colors border-b-2",
+                "flex-1 py-2.5 text-[11px] font-semibold transition-colors border-b-2",
                 activeTab === 'code' ? "border-[#0099FF] text-zinc-900 dark:text-white" : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
               )}
             >
