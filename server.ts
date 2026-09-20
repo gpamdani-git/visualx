@@ -238,7 +238,9 @@ async function startServer() {
 
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      // Express owns the HTTP server in development, so Vite cannot accept
+      // the preview's HMR WebSocket upgrade on its own.
+      server: { middlewareMode: true, hmr: false },
       appType: 'spa',
     });
     app.use(vite.middlewares);
