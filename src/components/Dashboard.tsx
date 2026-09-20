@@ -311,14 +311,17 @@ export default function Dashboard() {
       {/* MAIN DASHBOARD CONTENT */}
       <main className="flex-1 flex flex-col h-full overflow-y-auto bg-zinc-50 dark:bg-[#0F0F11] transition-colors">
         {/* Top Header */}
-        <header className="h-16 px-8 flex items-center justify-between border-b border-zinc-200 dark:border-[#1E1E24] bg-white dark:bg-[#0F0F11] flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
-              {getActiveTabTitle()}
-            </h1>
-            <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-[#1C1C22] border border-zinc-200 dark:border-[#2B2B36] text-zinc-600 dark:text-gray-400">
-              {sortedProjects.length}
-            </span>
+        <header className="min-h-20 px-6 lg:px-10 py-4 flex items-center justify-between gap-4 border-b border-zinc-200/80 dark:border-[#1E1E24] bg-white/90 dark:bg-[#0F0F11]/90 backdrop-blur flex-shrink-0">
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <h1 className="text-xl font-semibold text-zinc-950 dark:text-white tracking-tight">
+                {getActiveTabTitle()}
+              </h1>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-[#1C1C22] border border-zinc-200 dark:border-[#2B2B36] text-zinc-500 dark:text-gray-400">
+                {sortedProjects.length} {sortedProjects.length === 1 ? 'project' : 'projects'}
+              </span>
+            </div>
+            <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Create, refine, and publish your next site.</p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -405,7 +408,7 @@ export default function Dashboard() {
             {/* Import Project Button */}
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white bg-white dark:bg-[#1C1C22] hover:bg-zinc-100 dark:hover:bg-[#25252E] border border-zinc-200 dark:border-[#2D2D38] rounded-md shadow-sm transition-colors cursor-pointer mr-2"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white bg-white dark:bg-[#1C1C22] hover:bg-zinc-100 dark:hover:bg-[#25252E] border border-zinc-200 dark:border-[#2D2D38] rounded-lg transition-colors cursor-pointer"
               title="Import project from backup JSON file"
             >
               <Upload className="w-3.5 h-3.5" />

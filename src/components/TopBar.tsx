@@ -204,7 +204,7 @@ export default function TopBar({ onAiClick, onExportClick }: TopBarProps) {
   return (
     <>
     <KeyboardShortcutsModal isOpen={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
-    <div className="h-[48px] border-b border-zinc-200 dark:border-[#222] flex items-center justify-between px-3 flex-shrink-0 relative z-[9999] bg-white dark:bg-[#111111] transition-colors">
+    <div className="h-[56px] border-b border-zinc-200/80 dark:border-[#222] flex items-center justify-between px-4 flex-shrink-0 relative z-[9999] bg-white/95 dark:bg-[#111111]/95 backdrop-blur transition-colors">
       {/* Left side: Canvas dropdown button & Add Layout/Media menu */}
       <div className="flex items-center space-x-2">
         {/* Main Canvas / Navigation Menu */}

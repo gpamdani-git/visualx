@@ -35,6 +35,23 @@ html, body, #root {
 :root {
   --scrollbar-thumb: #cbd5e1;
   --scrollbar-thumb-hover: #94a3b8;
+  --surface-page: #f7f7f8;
+  --surface-card: #ffffff;
+  --surface-muted: #f1f1f3;
+  --ink-strong: #18181b;
+  --ink-muted: #71717a;
+  --line-subtle: #e4e4e7;
+  --brand: #2563eb;
+}
+
+body {
+  color: var(--ink-strong);
+  background: var(--surface-page);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+button, input, textarea, select {
+  font: inherit;
 }
 .dark {
   --scrollbar-thumb: #333;
